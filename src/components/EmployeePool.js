@@ -20,7 +20,6 @@ const EmployeePool = ({
 
   // On employees loaded
   useEffect(() => setPool(employees), [employees]);
-  useEffect(() => console.log(employees), [employees]);
 
   return (
     <>
@@ -29,11 +28,11 @@ const EmployeePool = ({
       <div className={"employee-pool-container"}>
         {employeePool?.map(item => (
           <EmployeeCard
-            id={item.id}
-            name={item.employee_name}
-            age={item.employee_age}
-            salary={item.employee_salary}
-            imageUrl={item.profile_image}/>
+            employeeId={item.id}
+            employeeName={item.employee_name}
+            employeeAge={item.employee_age}
+            employeeSalary={item.employee_salary}
+            employeeProfileImage={item.profile_image}/>
         ))}
       </div>
     </>

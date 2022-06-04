@@ -9,6 +9,7 @@
   border-radius: 15px;
   background-color: #dfdfe0;
   box-shadow: 0 0 10px grey;
+  overflow-x: auto;
 }
 
 .employee-pool-card {
@@ -20,8 +21,10 @@
   margin-block: 13px;
   text-align: left;
   border-radius: 15px;
+  border: 0;
   background-color: white;
   box-shadow: 0 0 10px grey;
+  cursor: pointer;
 }
 
 .employee-pool-card img {
@@ -31,4 +34,34 @@
 .employee-pool-card p {
   margin-block: 0;
   padding-left: 5px;
+}
+
+.employee-info-dialog {
+  width: 350px;
+  height: 400px;
+  border-radius: 15px;
+  border: 0;
+  background-color: #dfdfe0;
+  box-shadow: 0 0 10px grey;
+}
+
+.employee-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.employee-info-container img {
+  height: 150px;
+  width: 150px;
+  margin-block: 15px;
+  align-self: center;
+}
+
+.employee-info-container p {
+  margin-block: 10px;
+  padding-inline: 25% 0;
 }
