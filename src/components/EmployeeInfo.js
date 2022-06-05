@@ -2,6 +2,9 @@
 import { useState, useEffect  } from "react";
 import { connect } from "react-redux";
 import { defaulProfileImgs } from "../store/Employee/reducer";
+import Client from "../client";
+
+const client = new Client();
 
 const initialState = {
   id: "N/A",
@@ -14,39 +17,39 @@ const initialState = {
 const EmployeeInfo = ({
   open,
   onClose,
-  loadingEmployee,
-  employee,
+  employeeId,
 }) => {
   const [employeeInfo, setInfo] = useState(initialState);
 
-  useEffect(() => setInfo(employeeInfo => ({
-    id: employee?.id,
-    name: employee?.employee_name,
-    age: employee?.employee_age,
-    salary: (employee?.employee_salary/1000)?.toFixed(2),
-    profileImage: employee?.profile_image || employeeInfo.profileImage
-  })), [employee]);
+  useEffect(() => {
+    client.getEmployee(employeeId)
+      .then(res => res.json())
+      .then(data => setInfo(data.data))
+      .catch(err => console.warn(err));
+  }, [employeeId, open]);
 
   const onCloseCallback = () => {
-    if (onClose) {
-      onClose();
-    }
+    if (onClose) onClose();
     setInfo(initialState);
   };
 
   return (
     <dialog
       open={open}
-      onClose={onCloseCallback}
       className={"employee-info-dialog"}>
         <span className={"employee-info-container"}>
+          <button
+            onClick={onCloseCallback}
+            className={"dialog-exit-button"}>X</button>
+
+          {/* Employee Loaded Information */}
           <img
-            src={employeeInfo?.profileImage}
+            src={employeeInfo?.profileImage || "https://mysalonsoftware.co.za/wp-content/uploads/2019/08/avatar-user-hacker-3830b32ad9e0802c-512x512.png"}
             alt={employeeInfo?.name}/>
           <p><strong>Employee Id:  </strong>{employeeInfo?.id}</p>
-          <p><strong>Full Name:    </strong>{employeeInfo?.name}</p>
-          <p><strong>Age:          </strong>{employeeInfo?.age}</p>
-          <p><strong>Base salary:  </strong>${employeeInfo?.salary}</p>
+          <p><strong>Full Name:    </strong>{employeeInfo?.employee_name}</p>
+          <p><strong>Age:          </strong>{employeeInfo?.employee_age}</p>
+          <p><strong>Base salary:  </strong>${employeeInfo?.employee_salary}</p>
         </span>
     </dialog>
   );

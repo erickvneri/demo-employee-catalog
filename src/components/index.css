@@ -65,3 +65,10 @@
   margin-block: 10px;
   padding-inline: 25% 0;
 }
+
+.dialog-exit-button {
+  align-self: end;
+  width: 10%;
+  background-color: inherit;
+  border: 0;
+}

@@ -1,27 +1,33 @@
 /* eslint-disable no-mixed-operators */
 import { useState, useEffect } from "react";
-import { connect } from "react-redux";
 
 import "./index.css";
-import { fetchEmployees } from "../store/Employee/actions";
+import Client from "../client";
 
 import EmployeeCard from "./EmployeeCard";
 import SimpleSpinner from "./SimpleSpinner/SimpleSpinner";
 
+const client = new Client();
 
-const EmployeePool = ({
-  fetchEmployees,
-  employees,
-  loadingEmployees,
-  employeeError,
-}) => {
+const EmployeePool = () => {
   const [employeePool, setPool] = useState();
+  const [loadingEmployees, setLoading] = useState(false);
 
-  // On Mount, load employees
-  useEffect(() => fetchEmployees(), [fetchEmployees]);
-
-  // On employees loaded
-  useEffect(() => setPool(employees), [employees]);
+  // On Mount, fetch
+  // employees from hook
+  useEffect(() => {
+    setLoading(true);
+    client.getEmployees()
+      .then(res => res.json())
+      .then(data => setPool(() => {
+        setLoading(false);
+        return data.data?.map(employee => ({
+          ...employee,
+          profile_image: "https://mysalonsoftware.co.za/wp-content/uploads/2019/08/avatar-user-hacker-3830b32ad9e0802c-512x512.png"
+        }));
+      }))
+      .catch(err => console.warn(err));
+  }, []);
 
   return (
     <>
@@ -44,14 +50,4 @@ const EmployeePool = ({
   );
 };
 
-const mapStateToProps = state => ({
-  employees: state.employees,
-  loadingEmployees: state.loadingEmployees,
-  employeesError: state.employeesError
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchEmployees: () => dispatch(fetchEmployees())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeePool);
+export default EmployeePool;
