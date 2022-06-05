@@ -40,6 +40,11 @@ const EmployeeInfo = ({
       onClose={onCloseCallback}
       className={"employee-info-dialog"}>
         <span className={"employee-info-container"}>
+          <button
+            onClick={onCloseCallback}
+            className={"dialog-exit-button"}>X</button>
+
+          {/* Employee Loaded Information */}
           <img
             src={employeeInfo?.profileImage}
             alt={employeeInfo?.name}/>
