@@ -9,6 +9,8 @@ export const defaulProfileImgs = [
 
 const initialState = {
   loadingEmployees: false,
+  employee: null,
+  loadingEmployee: false,
   employees: [],
   employeesError: null
 };

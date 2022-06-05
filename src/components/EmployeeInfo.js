@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 import { useState, useEffect  } from "react";
 import { connect } from "react-redux";
 import { defaulProfileImgs } from "../store/Employee/reducer";

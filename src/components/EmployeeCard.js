@@ -18,7 +18,7 @@ const EmployeeCard = ({
 
   const fetchOnClick = () => {
     toggleDialog(true);
-    fetchEmployeeInfo(employeeId)
+    fetchEmployeeInfo(employeeId);
   };
 
   return (
@@ -40,7 +40,7 @@ const EmployeeCard = ({
           </span>
       </button>
 
-      <EmployeeInfo open={dialogOpen}/>
+      <EmployeeInfo open={dialogOpen} onClose={() => toggleDialog(false)}/>
     </>
   );
 };
