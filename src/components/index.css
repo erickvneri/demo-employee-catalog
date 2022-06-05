@@ -72,3 +72,8 @@
   background-color: inherit;
   border: 0;
 }
+
+.dialog-exit-button:hover {
+  border-radius: 15px;
+  background-color: lightgray;
+}
