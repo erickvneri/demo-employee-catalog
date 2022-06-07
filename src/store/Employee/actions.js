@@ -1,7 +1,7 @@
 import Client from "../../client";
 
 
-export const client = new Client();
+const client = new Client();
 
 export const actions = {
   GET_EMPLOYEES: "GET_EMPLOYEES",

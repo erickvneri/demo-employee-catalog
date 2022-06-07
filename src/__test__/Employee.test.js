@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { fetchEmployees, fetchEmployeeInfo, client } from '../store/Employee/actions';
+import { fetchEmployees, fetchEmployeeInfo } from '../store/Employee/actions';
 import EmployeePool from '../components/EmployeePool';
 import MockProvider from "./mockProvider";
 
@@ -46,7 +46,7 @@ describe("[ Employee Thunks (actions) ]", () => {
       // getState
       expect(getState).toBeCalledTimes(0);
     });
-  })
+  });
 });
 
 /**
